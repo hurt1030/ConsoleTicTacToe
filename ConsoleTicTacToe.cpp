@@ -94,7 +94,8 @@ private:
 
             return true;
         }
-        catch (...) {
+        catch (std::invalid_argument ex) {
+            // Catch any errors thrown by stoi. Protects from invalid inputs
             return false;
         }
 
@@ -129,7 +130,7 @@ public:
             bool moveIsValid = false;
 
             while (!moveIsValid) {
-                std::cout << "Player " << turn << ": please ";
+                std::cout << "Player " << turn << ": please enter the row and column you would like to make your move separated by a comma (Starts at 1)" << std::endl;
                 std::cin >> playerInput;
                 moveIsValid = validateMove(playerInput);
             }
